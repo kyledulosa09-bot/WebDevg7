@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Community Feedback Portal</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+       
+        body {
+            background: linear-gradient(135deg, #1a73e8 0%, #34a853 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+   
+       
+       
+        .front-container {
+            max-width: 1000px;
+            width: 100%;
+            padding: 20px;
+        }
+        
+       
+        /* para sa title*/
+       
+        .hero {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+        
+        .hero h1 {
+            color: white;
+            font-size: 42px;
+            margin-bottom: 12px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+            cursor: pointer;
+        }
+        
+        .hero p {
+            color: rgba(255,255,255,0.9);
+            font-size: 18px;
+        }
+        
+      
+        /* cards lagayan nung choices*/
+       
+        .cards {
+            display: flex;
+            gap: 32px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        
+        /* shadow effect design,umaangat yung cards*/
+      
+        .card {
+            background: white;
+            border-radius: 20px;
+            width: 320px;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        
+        /* hover card */
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+        
+      
+        /* color nung cards ung choices*/
+        
+       .card-header {
+    padding: 30px;
+    text-align: center;
+    min-height: 200px; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+        }
+        
+        /*card header*/
+        .card-header.student {
+            background: linear-gradient(135deg, #1a73e8 0%, #1557b0 100%);
+        }
+        
+        /* Tourism card header*/
+        .card-header.tourism {
+            background: linear-gradient(135deg, #34a853 0%, #2d8e47 100%);
+        }
+        
+        /* emoji */
+        .card-icon {
+            font-size: 64px;
+        }
+        
+        .card-header h2 {
+            color: white;
+            font-size: 24px;
+            margin: 16px 0 8px;
+            border: none;
+            padding: 0;
+        }
+        
+        .card-header p {
+            color: rgba(255,255,255,0.9);
+            font-size: 14px;
+        }
+        
+       
+       
+      
+        .card-body {
+            padding: 24px;
+            text-align: center;
+        }
+        
+        .card-body p {
+            color: #5f6368;
+            font-size: 14px;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+        
+      
+        /* start survey btn pindutn*/
+   
+        .card-btn {
+            background: #f8f9fa;
+            border: 1px solid #dadce0;
+            padding: 10px 24px;
+            border-radius: 30px;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.2s;
+            display: inline-block;
+            text-decoration: none; 
+        }
+        
+        /*  hover Design pang paangas lang */
+        .card-btn.student:hover {
+            background: #1a73e8;
+            color: white;
+            border-color: #1a73e8;
+        }
+        
+       
+        .card-btn.tourism:hover {
+            background: #34a853;
+            color: white;
+            border-color: #34a853;
+        }
+        
+       
+        /* for mobile compatibility */
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 28px;
+            }
+            .cards {
+                gap: 20px;
+            }
+            .card {
+                width: 100%;
+                max-width: 320px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="front-container">
+        <div class="hero">
+            <h1 id="mainTitle">Community Feedback Portal</h1>
+            <p>Share your voice — help us improve our community</p>
+        </div>
+
+        <div class="cards">
+            <!-- STUDENT CARD -->
+            <div class="card">
+                <div class="card-header student">
+                    <div class="card-icon">
+                        <span>🎓</span>
+                    </div>
+                    <h2>School Classroom Feedback</h2>
+                    <p>Student Survey</p>
+                </div>
+                <div class="card-body">
+                    <p>Share your classroom experience and help improve lessons with your honest feedback.</p>
+                    <a href="student_surveypi.html" class="card-btn student">Start Survey →</a>
+                </div>
+            </div>
+
+            <!-- TOURISM CARD -->
+            <div class="card">
+                <div class="card-header tourism">
+                    <div class="card-icon">
+                        <span>🌴</span>
+                    </div>
+                    <h2>Local Tourism Feedback</h2>
+                    <p>Visitor Survey</p>
+                </div>
+                <div class="card-body">
+                    <p>Help improve tourist spots, facilities, and visitor experience by sharing your feedback.</p>
+                    <a href="tourism_surveypi.html" class="card-btn tourism">Start Survey →</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- ADMIN ACCESS BUTTON REMOVED - Now secret only -->
+    </div>
+
+    <script>
+        // ============================================
+        // SECRET ADMIN ACCESS - NO VISIBLE BUTTON
+        // ============================================
+        
+        // METHOD 1: TAP TITLE 5 TIMES (works on mobile + desktop touch)
+        let tapCount = 0;
+        let tapTimer;
+        const titleElement = document.getElementById('mainTitle');
+        
+        if (titleElement) {
+            titleElement.addEventListener('click', function() {
+                tapCount++;
+                clearTimeout(tapTimer);
+                tapTimer = setTimeout(() => { tapCount = 0; }, 1000);
+                
+                if (tapCount === 5) {
+                    window.location.href = "admin_dashboard.php";
+                    tapCount = 0;
+                }
+            });
+        }
+
+        // METHOD 2: PRESS 'A' 3 TIMES (works on desktop keyboard)
+        let pressCount = 0;
+        let pressTimer;
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'a' || e.key === 'A') {
+                pressCount++;
+                clearTimeout(pressTimer);
+                pressTimer = setTimeout(() => { pressCount = 0; }, 1000);
+                
+                if (pressCount === 3) {
+                    window.location.href = "admin_dashboard.php";
+                    pressCount = 0;
+                }
+            }
+        });
+    </script>
+</body>
+</html>
